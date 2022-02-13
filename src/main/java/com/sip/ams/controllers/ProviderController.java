@@ -30,13 +30,17 @@ public class ProviderController {
 
     @GetMapping("list")
     //@ResponseBody
+    //le type String c'est le chemin vers le vue
     public String listProviders(Model model) {
     	
-    	
-        model.addAttribute("providers", providerRepository.findAll());
+    	List<Provider> lp = (List<Provider>)providerRepository.findAll();
+    	//si la taille de la liste est vide alors on va affecter le null a la liste pour le manipuler par la suite dans le thymeleaf
+    	//c-a-d il y a la liste mais les attribut de l'objet sont null;
+    	if(lp.size()==0) lp = null;
+        model.addAttribute("providers", lp);
         
         return "provider/listProviders";
-        //List<Provider> lp = (List<Provider>)providerRepository.findAll();
+        //
         //System.out.println(lp);
         
         //return "Nombre de fournisseur = " + lp.size();
@@ -73,12 +77,12 @@ System.out.println("suite du programme...");
         
         /*model.addAttribute("providers", providerRepository.findAll());
         return "provider/listProviders";*/
+        //../list : il va monter d'un niveau
         return "redirect:../list";
     }
     
     
     @GetMapping("edit/{id}")
-
     public String showProviderFormToUpdate(@PathVariable("id") long id, Model model) {
         Provider provider = providerRepository.findById(id)
             .orElseThrow(()->new IllegalArgumentException("Invalid provider Id:" + id));
