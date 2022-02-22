@@ -55,8 +55,11 @@ public class ProviderController {
         Provider provider = providerRepository.findById(id)
             .orElseThrow(()-> new IllegalArgumentException("Invalid provider Id:" + id));
         providerRepository.delete(provider);
-        model.addAttribute("providers", providerRepository.findAll());
-        return "provider/listProviders";
+
+        //model.addAttribute("providers", providerRepository.findAll());
+        //return "provider/listProviders";
+
+        return "redirect:../list";
     }
     
     
@@ -75,8 +78,12 @@ public class ProviderController {
             return "provider/updateProvider";
         }
         providerRepository.save(provider);
-        model.addAttribute("providers", providerRepository.findAll());
-        return "provider/listProviders";
+
+        //model.addAttribute("providers", providerRepository.findAll());
+        //return "provider/listProviders";
+
+        //../list : il va monter d'un niveau
+        return "redirect:../list";
     }
     
     @GetMapping("show/{id}")

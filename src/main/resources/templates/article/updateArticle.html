@@ -27,7 +27,7 @@
                             
                             <div class="form-group col-md-8">
                              <label for="provider" class="col-form-label">Select Provider</label>
-                            <select name="providerId" class="form-control">
+                            <select name="providerId" class="form-control" id="provider">
 							    <option  th:each="pr: ${providers}" 
 							    th:value="${pr.id}"
 							    th:text="${pr.name}" 

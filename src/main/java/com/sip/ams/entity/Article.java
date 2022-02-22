@@ -73,9 +73,9 @@ public class Article {
 
 	/**** Many To One ****/
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "provider_id", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false) //chargement a la demande
+	@JoinColumn(name = "provider_id", nullable = false) //le nom de la colonne sera nommé "provider_id"
+	@OnDelete(action = OnDeleteAction.CASCADE) // suppression des fils une fois le pere et supprimer et la colonne doit etre declarer nullable=false
 	private Provider provider;
 
 	public Provider getProvider() {
